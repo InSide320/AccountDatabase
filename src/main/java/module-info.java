@@ -7,4 +7,6 @@ module com.example.kursova {
     exports com.example.coursework;
     exports com.example.coursework.controller;
     opens com.example.coursework.controller to javafx.fxml;
+    exports com.example.coursework.database;
+    opens com.example.coursework.database to javafx.fxml;
 }

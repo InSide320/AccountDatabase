@@ -24,7 +24,7 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </Hyperlink>
-            <TextField fx:id="loginField" alignment="CENTER" layoutX="251.0" layoutY="106.0" prefHeight="26.0" prefWidth="199.0" promptText="Login" style="-fx-background-radius: 5;" />
+            <TextField fx:id="emailField" alignment="CENTER" layoutX="251.0" layoutY="106.0" prefHeight="26.0" prefWidth="199.0" promptText="Email" style="-fx-background-radius: 5;" />
             <PasswordField fx:id="passwordField" alignment="CENTER" layoutX="251.0" layoutY="132.0" prefHeight="26.0" prefWidth="199.0" promptText="Password" style="-fx-background-radius: 5;" />
             <Button fx:id="authSignInButton" alignment="CENTER" contentDisplay="CENTER" layoutX="251.0" layoutY="164.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="199.0" style="-fx-background-color: #1E90FF; -fx-background-radius: 10;" text="Авторизуватись" textAlignment="CENTER" textFill="WHITE">
                <font>
@@ -39,7 +39,7 @@
       </Label>
       <ImageView fitHeight="70.0" fitWidth="108.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@image/CPPCEmblem.jpg" />
+            <Image url="@../image/CPPCEmblem.jpg" />
          </image>
       </ImageView>
    </children>
