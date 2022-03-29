@@ -1,4 +1,4 @@
-package com.example.kursova;
+package com.example.coursework.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
