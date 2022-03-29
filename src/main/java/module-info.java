@@ -1,6 +1,8 @@
 module com.example.kursova {
     requires javafx.controls;
     requires javafx.fxml;
+    requires com.zaxxer.hikari;
+    requires java.sql;
 
 
     opens com.example.coursework to javafx.fxml;

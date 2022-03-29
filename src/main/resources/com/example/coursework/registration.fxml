@@ -28,7 +28,7 @@
         </Label>
         <ImageView fitHeight="70.0" fitWidth="108.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../image/CPPCEmblem.jpg" />
+                <Image url="@image/CPPCEmblem.jpg" />
             </image>
         </ImageView>
     </children>
