@@ -26,7 +26,7 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'com.example.coursework'
-    mainClass = 'com.example.coursework.HelloApplication'
+    mainClass = 'com.example.coursework.AccountDatabaseApplication'
 }
 
 javafx {
@@ -38,6 +38,9 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    implementation 'org.postgresql:postgresql:42.3.3'
+    implementation 'com.zaxxer:HikariCP:5.0.1'
+    implementation 'org.slf4j:slf4j-simple:1.7.36'
 }
 
 test {
