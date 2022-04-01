@@ -7,7 +7,10 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RegistrationController {
 
@@ -20,6 +23,8 @@ public class RegistrationController {
     public static void setStage(Stage stage) {
         RegistrationController.stage = stage;
     }
+
+    Logger logger = Logger.getGlobal();
 
     @FXML
     private ResourceBundle resources;
@@ -77,28 +82,50 @@ public class RegistrationController {
 
     @FXML
     void initialize() {
+        setDefaultOptions();
+
+
         registrationButton.setOnAction(event -> {
             stage.close();
         });
+
+        dateOfEntry.setOnAction(event -> {
+            try {
+                logger.log(Level.INFO, String.valueOf(dateOfEntry.getValue()));
+            } catch (DateTimeParseException e) {
+                logger.log(Level.WARNING, e.getMessage(), e.getStackTrace());
+            }
+        });
+
+        releaseDate.setOnAction(event -> {
+            logger.log(Level.INFO, String.valueOf(releaseDate.getValue()));
+        });
+
+        groupComoBox.setOnAction(event -> {
+            logger.log(Level.INFO, groupComoBox.getValue());
+        });
+    }
+
+    private static final String[] groupNumbers = {"4-1", "3-1", "2-1", "1-1"};
+    private static final String[] groupNames = {"PS", "RA", "ZM", "EA"};
+
+    private void setGroupType() {
+        for (String nameGroup : groupNames) {
+            for (String numberGroup : groupNumbers) {
+                groupComoBox.getItems().add(nameGroup + numberGroup);
+            }
+        }
+    }
+
+    private void setDefaultOptions() {
+        radioButtonStudentRole.setToggleGroup(toggleGroup);
+        radioButtonTeacherRole.setToggleGroup(toggleGroup);
 
         dateRegistrationField.textProperty()
                 .set(LocalDateTime.now().format(
                         DateTimeFormatter.ofPattern
                                 ("yyyy-MM-dd | HH:mm")));
-
-        dateOfEntry.setOnAction(event -> {
-            System.out.println(dateOfEntry.getValue());
-        });
-
-        releaseDate.setOnAction(event -> {
-            System.out.println(releaseDate.getValue());
-        });
-        groupComoBox.getItems().addAll("ПС4-1", "ПС3-1", "ПС2-1", "ПС1-1");
-        groupComoBox.setOnAction(event -> {
-            System.out.println(groupComoBox.getValue());
-        });
-        radioButtonStudentRole.setToggleGroup(toggleGroup);
-        radioButtonTeacherRole.setToggleGroup(toggleGroup);
+        setGroupType();
     }
 
     private static final ToggleGroup toggleGroup = new ToggleGroup();

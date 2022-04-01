@@ -8,18 +8,18 @@ import java.sql.SQLException;
 
 public class DataSource {
 
-    private static HikariConfig config = new HikariConfig(String.valueOf(HikariCPConfig.filePath));
-    private static HikariDataSource dataSource;
+    private static final HikariConfig config = new HikariConfig(String.valueOf(HikariCPConfig.filePath));
+    private static final HikariDataSource dataSources;
 
     static {
-        dataSource = new HikariDataSource(config);
-        dataSource.setLeakDetectionThreshold(5000);
+        dataSources = new HikariDataSource(config);
+        dataSources.setLeakDetectionThreshold(5000);
     }
 
-    public DataSource() {
+    private DataSource() {
     }
 
     public static Connection getConnection() throws SQLException {
-        return dataSource.getConnection();
+        return dataSources.getConnection();
     }
 }
