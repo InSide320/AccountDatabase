@@ -3,6 +3,7 @@ package com.example.coursework.database.hikaricp;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
@@ -20,16 +21,19 @@ public class HikariCPConfig {
     private static final String DATA_SOURCE_CACHE_SIZE = "dataSource.prepStmtCacheSize";
     private static final String DATA_SOURCE_CACHE_STMTS = "dataSource.prepStmtCacheSqlLimit";
 
-    static final Path userDir = Paths.get("com/example/coursework/properties/application.properties");
+    public static final Path userDir = Paths.get(System.getProperty("user.dir"));
+    public static final Path propertiesFile = userDir.resolve(
+            userDir + "/src/main/resources/com/example/coursework/properties/application.properties"
+    );
 
-    public static final File filePath = new File(String.valueOf(userDir));
+    public static final File filePath = new File(String.valueOf(propertiesFile));
 
     public void setFileProperties() throws IOException {
-        properties.setProperty(DATA_SOURCE_JDBC_URL, "jdbc:postgresql://localhost:5432/postgres");
+        properties.setProperty(DATA_SOURCE_JDBC_URL, "jdbc:postgresql://localhost:5432/users_cppc");
         properties.setProperty(DATA_SOURCE_USER, "InSide320");
         properties.setProperty(DATA_SOURCE_PASS, "pass");
         properties.setProperty(DATA_SOURCE_SERVER_NAME, "localhost");
-        properties.setProperty(DATA_SOURCE_DATABASE_NAME, "postgres");
+        properties.setProperty(DATA_SOURCE_DATABASE_NAME, "users_cppc");
         properties.setProperty(DATA_SOURCE_PORT_NUMBER, "5432");
         properties.setProperty(DATA_SOURCE_CACHE_STMTS, "true");
         properties.setProperty(DATA_SOURCE_CACHE_SIZE, "250");

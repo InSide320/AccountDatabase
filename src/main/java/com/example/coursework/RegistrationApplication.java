@@ -16,12 +16,11 @@ public class RegistrationApplication extends Application {
         stage.initModality(Modality.APPLICATION_MODAL);
 
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/com/example/coursework/fxml/registration.fxml"));
-//        Scene window = new Scene(fxmlLoader.load(), 700, 400);
+        fxmlLoader.setLocation(getClass().getResource("/com/example/coursework/registration.fxml"));
 
         stage.setTitle("RegistrationWindow");
-//        stage.setScene(window);
         RegistrationController.setStage(stage);
+
         Parent root = fxmlLoader.load();
         stage.setScene(new Scene(root));
         stage.showAndWait();
@@ -29,10 +28,5 @@ public class RegistrationApplication extends Application {
 
     public static void main(String[] args) {
         launch(args);
-    }
-
-    @Override
-    public void init() throws Exception {
-        super.init();
     }
 }

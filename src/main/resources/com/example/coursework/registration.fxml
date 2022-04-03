@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #008080;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.coursework.controller.RegistrationController">
+    <children>
+        <AnchorPane layoutY="84.0" prefHeight="316.0" prefWidth="701.0" style="-fx-background-color: #FAFAFA;">
+            <children>
+            <TextField fx:id="emailBackupField" alignment="CENTER" layoutX="14.0" layoutY="22.0" prefHeight="26.0" prefWidth="199.0" promptText="Email (backup)" style="-fx-background-radius: 5;" />
+            <TextField fx:id="phoneNumberBeckupField" alignment="CENTER" layoutX="14.0" layoutY="47.0" prefHeight="26.0" prefWidth="199.0" promptText="Mobile phone" style="-fx-background-radius: 5;" text="+(380)" />
+            <TextField fx:id="FirstNameTranslitField" alignment="CENTER" layoutX="18.0" layoutY="85.0" prefHeight="26.0" prefWidth="199.0" promptText="First Name (translit)" style="-fx-background-radius: 5;" />
+            <TextField fx:id="LastNameTranslitField" alignment="CENTER" layoutX="18.0" layoutY="111.0" prefHeight="26.0" prefWidth="199.0" promptText="LastName (translit)" style="-fx-background-radius: 5;" />
+            <TextField fx:id="lastNameField" alignment="CENTER" layoutX="252.0" layoutY="21.0" prefHeight="26.0" prefWidth="199.0" promptText="Прізвище (укр)" style="-fx-background-radius: 5;" />
+            <TextField fx:id="firstNameField" alignment="CENTER" layoutX="251.0" layoutY="46.0" prefHeight="26.0" prefWidth="199.0" promptText="Ім'я (укр)" style="-fx-background-radius: 5;" />
+            <TextField fx:id="midlNameField" alignment="CENTER" layoutX="251.0" layoutY="72.0" prefHeight="26.0" prefWidth="199.0" promptText="По-батьковы (укр)" style="-fx-background-radius: 5;" />
+            <ComboBox fx:id="groupComoBox" layoutX="499.0" layoutY="47.0" prefWidth="150.0" promptText="Група" />
+            <RadioButton fx:id="radioButtonStudentRole" layoutX="473.0" layoutY="122.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" selected="true" text="Student" />
+            <RadioButton fx:id="radioButtonTeacherRole" layoutX="576.0" layoutY="122.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Teacher" />
+            <ComboBox fx:id="orgUnitPathComboBox" layoutX="498.0" layoutY="197.0" prefWidth="150.0" promptText="Group" />
+            <DatePicker fx:id="dateOfEntry" layoutX="261.0" layoutY="139.0" promptText="Рік вступу (?)" />
+            <DatePicker fx:id="releaseDate" layoutX="261.0" layoutY="178.0" promptText="Рік закінчення" />
+                <Button fx:id="registrationButton" alignment="CENTER" contentDisplay="CENTER" layoutX="251.0" layoutY="225.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="199.0" style="-fx-background-color: #1E90FF; -fx-background-radius: 10;" text="Зареєструватись" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="Arial Black" size="13.0" />
+                    </font>
+                </Button>
+            <TextArea fx:id="commentField" layoutX="14.0" layoutY="145.0" prefHeight="104.0" prefWidth="207.0" promptText="Коментар з приводу роботи" />
+            <TextField alignment="CENTER" disable="true" editable="false" layoutX="511.0" layoutY="22.0" prefHeight="26.0" prefWidth="127.0" promptText="Група" style="-fx-background-radius: 5;" />
+            <TextField alignment="CENTER" disable="true" editable="false" layoutX="509.0" layoutY="171.0" prefHeight="26.0" prefWidth="127.0" promptText="Group" style="-fx-background-radius: 5;" />
+            <TextField alignment="CENTER" disable="true" editable="false" layoutX="510.0" layoutY="96.0" prefHeight="26.0" prefWidth="127.0" promptText="Role" style="-fx-background-radius: 5;" />
+            </children></AnchorPane>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="164.0" layoutY="14.0" prefHeight="46.0" prefWidth="373.0" text="Реєстрація" textFill="WHITE">
+            <font>
+                <Font name="Arial Black" size="37.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="70.0" fitWidth="108.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@image/CPPCEmblem.jpg" />
+            </image>
+        </ImageView>
+      <TextField fx:id="dateRegistrationField" alignment="CENTER" disable="true" editable="false" layoutX="506.0" layoutY="56.0" />
+      <Text fill="WHITE" layoutX="506.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Час реєстрації" textAlignment="CENTER" wrappingWidth="152.0">
+         <font>
+            <Font name="Arial Black" size="13.0" />
+         </font>
+      </Text>
+    </children>
+</AnchorPane>
