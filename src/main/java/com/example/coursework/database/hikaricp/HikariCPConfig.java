@@ -29,11 +29,11 @@ public class HikariCPConfig {
     public static final File filePath = new File(String.valueOf(propertiesFile));
 
     public void setFileProperties() throws IOException {
-        properties.setProperty(DATA_SOURCE_JDBC_URL, "jdbc:postgresql://localhost:5432/postgres");
+        properties.setProperty(DATA_SOURCE_JDBC_URL, "jdbc:postgresql://localhost:5432/users_cppc");
         properties.setProperty(DATA_SOURCE_USER, "InSide320");
         properties.setProperty(DATA_SOURCE_PASS, "pass");
         properties.setProperty(DATA_SOURCE_SERVER_NAME, "localhost");
-        properties.setProperty(DATA_SOURCE_DATABASE_NAME, "postgres");
+        properties.setProperty(DATA_SOURCE_DATABASE_NAME, "users_cppc");
         properties.setProperty(DATA_SOURCE_PORT_NUMBER, "5432");
         properties.setProperty(DATA_SOURCE_CACHE_STMTS, "true");
         properties.setProperty(DATA_SOURCE_CACHE_SIZE, "250");

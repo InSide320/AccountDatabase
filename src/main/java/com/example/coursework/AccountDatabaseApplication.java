@@ -1,6 +1,6 @@
 package com.example.coursework;
 
-import com.example.coursework.database.hikaricp.DataSource;
+import com.example.coursework.database.CreateTableDataBase;
 import com.example.coursework.database.hikaricp.HikariCPConfig;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,7 +8,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AccountDatabaseApplication extends Application {
     @Override
@@ -20,16 +21,16 @@ public class AccountDatabaseApplication extends Application {
         stage.show();
     }
 
+    public static final Logger logger = Logger.getGlobal();
+
     public static void main(String[] args) {
-        System.out.println(HikariCPConfig.propertiesFile);
         HikariCPConfig hikariCPConfig = new HikariCPConfig();
         try {
             hikariCPConfig.setFileProperties();
-            DataSource.getConnection();
-        } catch (IOException | SQLException e) {
-            e.printStackTrace();
+            CreateTableDataBase.createDataBase();
+        } catch (IOException e) {
+            logger.log(Level.WARNING, e.getMessage(), e.getStackTrace());
         }
-
         launch();
     }
 }

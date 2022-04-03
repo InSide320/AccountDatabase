@@ -22,4 +22,8 @@ public class DataSource {
     public static Connection getConnection() throws SQLException {
         return dataSources.getConnection();
     }
+
+    public static void disconnectDataBase() {
+        dataSources.close();
+    }
 }

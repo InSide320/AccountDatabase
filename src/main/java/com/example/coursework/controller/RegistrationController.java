@@ -1,5 +1,7 @@
 package com.example.coursework.controller;
 
+import com.example.coursework.database.utility.SqlCommandUtility;
+import com.example.coursework.user.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -7,9 +9,9 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class RegistrationController {
@@ -63,7 +65,7 @@ public class RegistrationController {
     private RadioButton radioButtonTeacherRole;
 
     @FXML
-    private ComboBox<?> orgUnitPathComboBox;
+    private ComboBox<String> orgUnitPathComboBox;
 
     @FXML
     private DatePicker dateOfEntry;
@@ -84,36 +86,45 @@ public class RegistrationController {
     void initialize() {
         setDefaultOptions();
 
-
         registrationButton.setOnAction(event -> {
+            SqlCommandUtility.executeCommandToInsertValues(
+                    FirstNameTranslitField.getText(), LastNameTranslitField.getText(),
+                    emailBackupField.getText(), phoneNumberBeckupField.getText(),
+                    lastNameField.getText(), firstNameField.getText(), midlNameField.getText(),
+                    dateOfEntry.getValue(), releaseDate.getValue(),
+                    groupComoBox.getValue(), orgUnitPathComboBox.getValue(),
+                    toggleGroup.getSelectedToggle()
+            );
+
             stage.close();
-        });
-
-        dateOfEntry.setOnAction(event -> {
-            try {
-                logger.log(Level.INFO, String.valueOf(dateOfEntry.getValue()));
-            } catch (DateTimeParseException e) {
-                logger.log(Level.WARNING, e.getMessage(), e.getStackTrace());
-            }
-        });
-
-        releaseDate.setOnAction(event -> {
-            logger.log(Level.INFO, String.valueOf(releaseDate.getValue()));
-        });
-
-        groupComoBox.setOnAction(event -> {
-            logger.log(Level.INFO, groupComoBox.getValue());
         });
     }
 
-    private static final String[] groupNumbers = {"4-1", "3-1", "2-1", "1-1"};
-    private static final String[] groupNames = {"PS", "RA", "ZM", "EA"};
+    private static final List<String> groupNumbers = new ArrayList<>();
+    private static final List<String> groupNamesUk = new ArrayList<>();
+    private static final List<String> groupNamesOrgUnit = new ArrayList<>();
+
 
     private void setGroupType() {
-        for (String nameGroup : groupNames) {
-            for (String numberGroup : groupNumbers) {
-                groupComoBox.getItems().add(nameGroup + numberGroup);
-            }
+        setListNumbersGroup();
+        setNameGroup();
+        for (String nameGroup : groupNamesUk) {
+            groupUkNumberSettingCycle(nameGroup);
+        }
+        for (String nameGroup : groupNamesOrgUnit) {
+            groupOrgUnitNumberSettingCycle(nameGroup);
+        }
+    }
+
+    private void groupOrgUnitNumberSettingCycle(String nameGroup) {
+        for (String numberGroup : groupNumbers) {
+            orgUnitPathComboBox.getItems().add(nameGroup + numberGroup);
+        }
+    }
+
+    private void groupUkNumberSettingCycle(String nameGroup) {
+        for (String numberGroup : groupNumbers) {
+            groupComoBox.getItems().add(nameGroup + numberGroup);
         }
     }
 
@@ -129,4 +140,23 @@ public class RegistrationController {
     }
 
     private static final ToggleGroup toggleGroup = new ToggleGroup();
+
+    private void setNameGroup() {
+        groupNamesUk.add("ПС");
+        groupNamesUk.add("РА");
+        groupNamesUk.add("ЗМ");
+        groupNamesUk.add("ЕА");
+
+        groupNamesOrgUnit.add("PS");
+        groupNamesOrgUnit.add("RA");
+        groupNamesOrgUnit.add("ZM");
+        groupNamesOrgUnit.add("EA");
+    }
+
+    private void setListNumbersGroup() {
+        groupNumbers.add("4-1");
+        groupNumbers.add("3-1");
+        groupNumbers.add("2-1");
+        groupNumbers.add("1-1");
+    }
 }

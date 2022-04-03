@@ -11,4 +11,6 @@ module com.example.kursova {
     opens com.example.coursework.controller to javafx.fxml;
     exports com.example.coursework.database;
     opens com.example.coursework.database to javafx.fxml;
+    exports com.example.coursework.user;
+    opens com.example.coursework.user to javafx.fxml;
 }

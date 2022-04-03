@@ -29,9 +29,4 @@ public class RegistrationApplication extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
-    @Override
-    public void init() throws Exception {
-        super.init();
-    }
 }
