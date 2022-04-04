@@ -23,7 +23,7 @@ public class HikariCPConfig {
 
     public static final Path userDir = Paths.get(System.getProperty("user.dir"));
     public static final Path propertiesFile = userDir.resolve(
-            userDir + "/src/main/resources/com/example/coursework/properties/application.properties"
+            userDir + "/src/main/resources/com/example/coursework/file/properties/application.properties"
     );
 
     public static final File filePath = new File(String.valueOf(propertiesFile));

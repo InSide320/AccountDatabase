@@ -1,7 +1,7 @@
 package com.example.coursework.controller;
 
 import com.example.coursework.database.utility.SqlCommandUtility;
-import com.example.coursework.user.User;
+import com.example.coursework.user.type.RoleType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -87,13 +87,17 @@ public class RegistrationController {
         setDefaultOptions();
 
         registrationButton.setOnAction(event -> {
+            RoleType roleType = null;
+            if (radioButtonStudentRole.isSelected()) roleType = RoleType.STUDENT;
+            else roleType = RoleType.TEACHER;
+
             SqlCommandUtility.executeCommandToInsertValues(
                     FirstNameTranslitField.getText(), LastNameTranslitField.getText(),
                     emailBackupField.getText(), phoneNumberBeckupField.getText(),
                     lastNameField.getText(), firstNameField.getText(), midlNameField.getText(),
                     dateOfEntry.getValue(), releaseDate.getValue(),
                     groupComoBox.getValue(), orgUnitPathComboBox.getValue(),
-                    toggleGroup.getSelectedToggle()
+                    roleType
             );
 
             stage.close();
