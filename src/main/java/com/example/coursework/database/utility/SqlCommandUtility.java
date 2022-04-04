@@ -1,14 +1,18 @@
 package com.example.coursework.database.utility;
 
+import com.example.coursework.database.file.SerializableObject;
 import com.example.coursework.database.hikaricp.DataSource;
+import com.example.coursework.user.User;
 import com.example.coursework.user.type.RoleType;
 import javafx.scene.control.Toggle;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.io.IOException;
+import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SqlCommandUtility {
     public static final String SQL_INSERT_TO_TABLE_A_DATA = ""
@@ -26,12 +30,48 @@ public class SqlCommandUtility {
             + " group_translit,"
             + " role_human) values (?, ?, ?, ? ,? ,?, ?, ?, ?, ?, ? ,?)"
             + " on conflict (phone_number) do nothing";
+    public static final String SQL_SELECT_FOR_TABLE_VALUE = "SELECT * from registration_users";
+
+    private static Logger logger = Logger.getGlobal();
+    static List<User> userList = new ArrayList<>();
+
+    public static void selectTableValueAll() {
+        try (Connection connection = DataSource.getConnection();
+             PreparedStatement preparedStatement =
+                     connection.prepareStatement(SQL_SELECT_FOR_TABLE_VALUE)
+        ) {
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                User user = new User(
+                        rs.getInt("id"),
+                        rs.getString("last_name_translit"),
+                        rs.getString("first_name_translit"),
+                        rs.getString("group_translit"),
+                        rs.getString("last_name_uk"),
+                        rs.getString("first_name_uk"),
+                        rs.getString("midl_name_uk"),
+                        rs.getString("group_uk"),
+                        rs.getString("phone_number"),
+                        RoleType.valueOf(rs.getString("role_human")),
+                        rs.getString("email_backup"),
+                        rs.getDate("date_enter").toLocalDate(),
+                        rs.getDate("release_date").toLocalDate());
+                userList.add(user);
+
+            }
+            SerializableObject.setFileValues(userList);
+        } catch (SQLException | IOException e) {
+            logger.log(Level.WARNING, e.getMessage(), e.getStackTrace());
+        }
+    }
 
     public static void executeCommandToInsertValues(
-            String firstNameTranslit, String lastNameTranslit, String emailBackup, String phoneNumber,
+            String firstNameTranslit, String lastNameTranslit,
+            String emailBackup, String phoneNumber,
             String lastNameUk, String firstNameUk, String midlNameUk,
             LocalDate dataEnter, LocalDate releaseDate,
-            String groupUk, String groupTranslit, Toggle toggle
+            String groupUk, String groupTranslit, RoleType roleType
     ) {
         try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement =
@@ -54,11 +94,13 @@ public class SqlCommandUtility {
             preparedStatement.setString(10, groupUk);
             preparedStatement.setString(11, groupTranslit);
 
-            preparedStatement.setString(12, String.valueOf(toggle));
+            preparedStatement.setString(12, String.valueOf(roleType));
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, e.getMessage(), e.getStackTrace());
         }
     }
+
+
 }

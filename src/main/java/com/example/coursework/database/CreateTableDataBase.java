@@ -54,7 +54,7 @@ public class CreateTableDataBase {
             commandInsertToTable.setTimestamp(9, Timestamp.valueOf(LocalDateTime.now()));
             commandInsertToTable.setString(10, "ПС4-1");
             commandInsertToTable.setString(11, "PS4-1");
-            commandInsertToTable.setString(12, "student");
+            commandInsertToTable.setString(12, "STUDENT");
 
             commandInsertToTable.executeUpdate();
         } catch (SQLException e) {

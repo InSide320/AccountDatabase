@@ -2,9 +2,10 @@ package com.example.coursework.user;
 
 import com.example.coursework.user.type.RoleType;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class User {
+public class User implements Serializable {
 
     private Integer id;
     private String lastNameTranslit;
@@ -27,7 +28,7 @@ public class User {
     public User(
             Integer id, String lastNameTranslit, String firstNameTranslit, String groupTranslit,
             String lastNameUk, String firstNameUk, String midlNameUk, String groupUK, String phoneNumber,
-            RoleType roleType,
+            RoleType roleType, String emailBackup,
             LocalDate dateEnter, LocalDate releaseDate
     ) {
         this.id = id;
@@ -40,6 +41,7 @@ public class User {
         this.groupUK = groupUK;
         this.phoneNumber = phoneNumber;
         this.roleType = roleType;
+        this.emailBackup = emailBackup;
         this.dateEnter = dateEnter;
         this.releaseDate = releaseDate;
     }
@@ -48,18 +50,19 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", lastNameTranslit='" + lastNameTranslit + '\'' +
-                ", firstNameTranslit='" + firstNameTranslit + '\'' +
+                ", lastNameEng='" + lastNameTranslit + '\''  +
+                ", firstNameEng='" + firstNameTranslit + '\'' +
                 ", lastNameUk='" + lastNameUk + '\'' +
                 ", firstNameUk='" + firstNameUk + '\'' +
                 ", midlNameUk='" + midlNameUk + '\'' +
+
                 ", emailBackup='" + emailBackup + '\'' +
                 ", phoneNumber=" + phoneNumber +
                 ", roleType=" + roleType +
                 ", dateEnter=" + dateEnter +
                 ", releaseDate=" + releaseDate +
                 ", groupUK='" + groupUK + '\'' +
-                ", groupTranslit='" + groupTranslit + '\'' +
+                ", groupEng='" + groupTranslit + '\'' +
                 '}';
     }
 
