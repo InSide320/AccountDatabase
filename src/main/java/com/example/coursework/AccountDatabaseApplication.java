@@ -1,8 +1,9 @@
 package com.example.coursework;
 
-import com.example.coursework.database.CreateTableDataBase;
+import com.example.coursework.database.RegistrationUsersCreateTable;
+import com.example.coursework.database.UserDataSavingDatabase;
 import com.example.coursework.database.file.SerializableObject;
-import com.example.coursework.database.hikaricp.HikariCPConfig;
+import com.example.coursework.database.hikaricp.HikariCpConfig;
 import com.example.coursework.database.utility.SqlCommandUtility;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -27,11 +28,12 @@ public class AccountDatabaseApplication extends Application {
 
     public static void main(String[] args) {
 
-        HikariCPConfig hikariCPConfig = new HikariCPConfig();
+        HikariCpConfig hikariCpConfig = new HikariCpConfig();
         try {
-            hikariCPConfig.setFileProperties();
-            CreateTableDataBase.createDataBase();
+            hikariCpConfig.setFileProperties();
+            RegistrationUsersCreateTable.createDataBase();
             SqlCommandUtility.selectTableValueAll();
+            UserDataSavingDatabase.dataUsers();
             SerializableObject.getFileValues();
         } catch (IOException e) {
             logger.log(Level.WARNING, e.getMessage(), e.getStackTrace());

@@ -1,6 +1,8 @@
 package com.example.coursework.controller;
 
 import com.example.coursework.database.utility.SqlCommandUtility;
+import com.example.coursework.user.generate.GenerateEmail;
+import com.example.coursework.user.generate.GeneratePassword;
 import com.example.coursework.user.type.RoleType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -12,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class RegistrationController {
@@ -87,7 +90,7 @@ public class RegistrationController {
         setDefaultOptions();
 
         registrationButton.setOnAction(event -> {
-            RoleType roleType = null;
+            RoleType roleType;
             if (radioButtonStudentRole.isSelected()) roleType = RoleType.STUDENT;
             else roleType = RoleType.TEACHER;
 
@@ -99,8 +102,19 @@ public class RegistrationController {
                     groupComoBox.getValue(), orgUnitPathComboBox.getValue(),
                     roleType
             );
+            String email = GenerateEmail.generateEmail(LastNameTranslitField.getText(), FirstNameTranslitField.getText());
+            String password = (String) GeneratePassword.generateStrongPassword();
+            String massage = "Your email: " + email + "\n " + "Your password: " + password;
+
+            logger.log(Level.INFO, massage);
+
+            SqlCommandUtility.insertDataAboutUser(
+                    email,
+                    password
+            );
 
             stage.close();
+
         });
     }
 
@@ -138,8 +152,7 @@ public class RegistrationController {
 
         dateRegistrationField.textProperty()
                 .set(LocalDateTime.now().format(
-                        DateTimeFormatter.ofPattern
-                                ("yyyy-MM-dd | HH:mm")));
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd | HH:mm")));
         setGroupType();
     }
 

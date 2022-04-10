@@ -2,16 +2,16 @@ package com.example.coursework.database;
 
 import com.example.coursework.database.hikaricp.DataSource;
 import com.example.coursework.database.utility.SqlCommandUtility;
+import com.example.coursework.user.type.RoleType;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CreateTableDataBase {
+public class RegistrationUsersCreateTable {
     private static final String CREATE_TABLE_SQL_DATABASE = "CREATE TABLE IF NOT EXISTS registration_users ("
             + "id serial,"
             + "first_name_translit varchar (50),"
@@ -30,33 +30,32 @@ public class CreateTableDataBase {
 
     public static final Logger logger = Logger.getGlobal();
 
-    private CreateTableDataBase() {
+    private RegistrationUsersCreateTable() {
 
     }
 
     public static void createDataBase() {
         try (Connection connection = DataSource.getConnection();
-             PreparedStatement preparedStatement =
-                     connection.prepareStatement(CREATE_TABLE_SQL_DATABASE);
-             PreparedStatement commandInsertToTable =
-                     connection.prepareStatement(SqlCommandUtility.SQL_INSERT_TO_TABLE_A_DATA)
-        ) {
-            preparedStatement.execute();
+             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_TABLE_SQL_DATABASE);
+             ) {
 
-            commandInsertToTable.setString(1, "Denis");
-            commandInsertToTable.setString(2, "Kud");
-            commandInsertToTable.setString(3, "dekud2109@gmail.com");
-            commandInsertToTable.setInt(4, 983981415);
-            commandInsertToTable.setString(5, "Кудь");
-            commandInsertToTable.setString(6, "Денис");
-            commandInsertToTable.setString(7, "Олександрович");
-            commandInsertToTable.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
-            commandInsertToTable.setTimestamp(9, Timestamp.valueOf(LocalDateTime.now()));
-            commandInsertToTable.setString(10, "ПС4-1");
-            commandInsertToTable.setString(11, "PS4-1");
-            commandInsertToTable.setString(12, "STUDENT");
+            preparedStatement.executeUpdate();
 
-            commandInsertToTable.executeUpdate();
+            SqlCommandUtility.executeCommandToInsertValues(
+                    "Denis",
+                    "Kud",
+                    "dekud2109@gmail.com",
+                    "+(380)983981415",
+                    "Кудь",
+                    "Денис",
+                    "Олександрович",
+                    LocalDate.now(),
+                    LocalDate.now(),
+                    "ПС4-1",
+                    "PS4-1",
+                    RoleType.STUDENT
+            );
+
         } catch (SQLException e) {
             logger.log(Level.WARNING, e.getMessage(), e.getSQLState());
         }

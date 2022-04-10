@@ -50,12 +50,11 @@ public class User implements Serializable {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", lastNameEng='" + lastNameTranslit + '\''  +
+                ", lastNameEng='" + lastNameTranslit + '\'' +
                 ", firstNameEng='" + firstNameTranslit + '\'' +
                 ", lastNameUk='" + lastNameUk + '\'' +
                 ", firstNameUk='" + firstNameUk + '\'' +
                 ", midlNameUk='" + midlNameUk + '\'' +
-
                 ", emailBackup='" + emailBackup + '\'' +
                 ", phoneNumber=" + phoneNumber +
                 ", roleType=" + roleType +
