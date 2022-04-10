@@ -21,6 +21,12 @@ public record UserController(List<User> userList) {
         return userList().add(user);
     }
 
+    public void addAuthorizationDataUsers(){
+        for(User user : userList()){
+//            user.setAuthEmail();
+        }
+    }
+
     private void getIdUser() {
         for (User user : userList()) {
             String lineIdUsers = user.getId()

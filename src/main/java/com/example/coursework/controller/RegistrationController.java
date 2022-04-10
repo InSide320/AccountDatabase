@@ -94,16 +94,18 @@ public class RegistrationController {
             if (radioButtonStudentRole.isSelected()) roleType = RoleType.STUDENT;
             else roleType = RoleType.TEACHER;
 
+            String email = GenerateEmail.generateEmail(LastNameTranslitField.getText(), FirstNameTranslitField.getText());
+            String password = (String) GeneratePassword.generateStrongPassword();
+
             SqlCommandUtility.executeCommandToInsertValues(
                     FirstNameTranslitField.getText(), LastNameTranslitField.getText(),
                     emailBackupField.getText(), phoneNumberBeckupField.getText(),
                     lastNameField.getText(), firstNameField.getText(), midlNameField.getText(),
                     dateOfEntry.getValue(), releaseDate.getValue(),
                     groupComoBox.getValue(), orgUnitPathComboBox.getValue(),
-                    roleType
+                    roleType, email, password
             );
-            String email = GenerateEmail.generateEmail(LastNameTranslitField.getText(), FirstNameTranslitField.getText());
-            String password = (String) GeneratePassword.generateStrongPassword();
+
             String massage = "Your email: " + email + "\n " + "Your password: " + password;
 
             logger.log(Level.INFO, massage);

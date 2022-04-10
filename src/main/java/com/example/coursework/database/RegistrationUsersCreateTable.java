@@ -25,7 +25,9 @@ public class RegistrationUsersCreateTable {
             + "release_date date,"
             + "group_uk varchar (10),"
             + "group_translit varchar (10),"
-            + "role_human varchar (250)"
+            + "role_human varchar (250),"
+            + "auth_email varchar (50),"
+            + "auth_pass varchar (50)"
             + ")";
 
     public static final Logger logger = Logger.getGlobal();
@@ -42,18 +44,16 @@ public class RegistrationUsersCreateTable {
             preparedStatement.executeUpdate();
 
             SqlCommandUtility.executeCommandToInsertValues(
-                    "Denis",
-                    "Kud",
+                    "Denis", "Kud",
                     "dekud2109@gmail.com",
                     "+(380)983981415",
-                    "Кудь",
-                    "Денис",
+                    "Кудь", "Денис",
                     "Олександрович",
-                    LocalDate.now(),
-                    LocalDate.now(),
+                    LocalDate.now(), LocalDate.now(),
                     "ПС4-1",
                     "PS4-1",
-                    RoleType.STUDENT
+                    RoleType.STUDENT,
+                    "admin", "admin"
             );
 
         } catch (SQLException e) {
