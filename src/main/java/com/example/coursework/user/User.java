@@ -20,6 +20,8 @@ public class User implements Serializable {
     private LocalDate releaseDate;
     private String groupUK;
     private String groupTranslit;
+    private String authEmail;
+    private String authPassword;
 
 
     public User() {
@@ -29,7 +31,8 @@ public class User implements Serializable {
             Integer id, String lastNameTranslit, String firstNameTranslit, String groupTranslit,
             String lastNameUk, String firstNameUk, String midlNameUk, String groupUK, String phoneNumber,
             RoleType roleType, String emailBackup,
-            LocalDate dateEnter, LocalDate releaseDate
+            LocalDate dateEnter, LocalDate releaseDate,
+            String authEmail, String authPassword
     ) {
         this.id = id;
         this.lastNameTranslit = lastNameTranslit;
@@ -44,18 +47,19 @@ public class User implements Serializable {
         this.emailBackup = emailBackup;
         this.dateEnter = dateEnter;
         this.releaseDate = releaseDate;
+        this.authEmail = authEmail;
+        this.authPassword = authPassword;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", lastNameEng='" + lastNameTranslit + '\''  +
+                ", lastNameEng='" + lastNameTranslit + '\'' +
                 ", firstNameEng='" + firstNameTranslit + '\'' +
                 ", lastNameUk='" + lastNameUk + '\'' +
                 ", firstNameUk='" + firstNameUk + '\'' +
                 ", midlNameUk='" + midlNameUk + '\'' +
-
                 ", emailBackup='" + emailBackup + '\'' +
                 ", phoneNumber=" + phoneNumber +
                 ", roleType=" + roleType +
@@ -64,6 +68,22 @@ public class User implements Serializable {
                 ", groupUK='" + groupUK + '\'' +
                 ", groupEng='" + groupTranslit + '\'' +
                 '}';
+    }
+
+    public String getAuthEmail() {
+        return authEmail;
+    }
+
+    public void setAuthEmail(String authEmail) {
+        this.authEmail = authEmail;
+    }
+
+    public String getAuthPassword() {
+        return authPassword;
+    }
+
+    public void setAuthPassword(String authPassword) {
+        this.authPassword = authPassword;
     }
 
     public String getGroupUK() {

@@ -3,12 +3,11 @@ package com.example.coursework.database.hikaricp;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
 
-public class HikariCPConfig {
+public class HikariCpConfig {
     Properties properties = new Properties();
 
     private static final String DATA_SOURCE_JDBC_URL = "JdbcUrl";
@@ -23,7 +22,8 @@ public class HikariCPConfig {
 
     public static final Path userDir = Paths.get(System.getProperty("user.dir"));
     public static final Path propertiesFile = userDir.resolve(
-            userDir + "/src/main/resources/com/example/coursework/file/properties/application.properties"
+            userDir + "/src/main/resources/com/example/coursework/"
+                    + "file/properties/application.properties"
     );
 
     public static final File filePath = new File(String.valueOf(propertiesFile));

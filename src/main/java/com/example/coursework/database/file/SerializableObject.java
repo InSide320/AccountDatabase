@@ -1,11 +1,11 @@
 package com.example.coursework.database.file;
 
 import com.example.coursework.user.User;
+import com.example.coursework.user.UserController;
 
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,14 +25,14 @@ public class SerializableObject {
         }
     }
 
-    public static List<User> userList = new ArrayList<>();
+    static UserController userController = UserController.getInstance();
 
 
     public static void getFileValues() {
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(createFile))) {
-            userList = (List<User>) inputStream.readObject();
-            for (int i = 0; i < userList.size(); i++) {
-                logger.log(Level.INFO, String.valueOf(userList.get(i)));
+            userController = new UserController((List<User>) inputStream.readObject());
+            for (int i = 0; i < userController.userList().size(); i++) {
+                logger.log(Level.INFO, String.valueOf(userController.userList().get(i)));
             }
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
